@@ -20,7 +20,19 @@
 
 ## What is version control and git?
 
+Writing code can be a messy process. When working on your code, you make many decisions over long periods of time. Files and lines of code are deleted and replaced, functions are changed, the structure of your programs are rewritten and refactored. All of these changes can have unintended consequences. Wouldn't it be great to undo them? Or just to remember why on earth you made that weird function in the first place? 
+
+Well commented code can solve many issues, but tracking changes over time is a valuable tool that allows coders to see how a project has evolved without resorting to confusing schemes that force you to remember if 'newproject-definitelythefinalversionimprettysure1.py' was the last one that you got working correctly or if that was number 2.
+
+Problems of this sort only become more complex when working on teams of coders. With many chefs in many kitchens, it can be difficult to figure out why a large project is no longer working the way it should. Many changes to different parts of a codebase can add up over time, and often the left hand doesn't know what the right hand is doing.
+
+Version control systems allow you the ability to track and manage changes to code over time. They give a picture of how code evolves, give projects control over how to accept or reject changes, and allow the ability to undo destructive changes and start from the last time everything was working correctly.
+
+'git' is a specific variety of version control that provides a set of commands allowing versions of code to be incorporated into a history (repository) that tracks what changes have been made over time, as well as allow collaborative coding efforts. 'git' shouldn't be confused with GitHub. GitHub is a repository hosting service that can store your code histories and allow you to distribute them easily, but it is not the only hosting service. 'git' repositories can also be hosted by other companies like BitBucket, or stored on a local machine on your own network.
+
 ## How do you start a git repository?
+
+There are many graphical user interfaces for interacting with 'git', but intitially we are going to focus on the Unix commandline version of 'git'.
 
 ## How do you work on someone else's repository?
 
