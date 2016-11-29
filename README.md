@@ -32,7 +32,52 @@ Version control systems allow you the ability to track and manage changes to cod
 
 ## How do you start a git repository?
 
-There are many graphical user interfaces for interacting with 'git', but intitially we are going to focus on the Unix commandline version of 'git'.
+There are many graphical user interfaces for interacting with 'git', but intitially we are going to focus on the Unix commandline version of 'git'. The command line tools are more consistent across platforms and are much more explicit about what they are doing. For our purposes today we will be using GitHub as the main repository host.
+
+First you will need to set up a user account and password on GitHub. Once you have done so, click the '+' sign in the upper righthand corner of the page and choose to create a new repo. Call it 'exampleRepo'.
+
+Now that we have created the repo on the server, the next step is to find a place to work on your computer. Navigate to the directory you would like to store your git repositories. The new repo will be saved as a subdirectory of that folder. Create a folder named exampleRepo and then navigate to the new directory. Type the following:
+
+'echo "# exampleRepo" >> README.md
+git init
+git add README.md
+git commit -m "first commit"'
+
+This block of code first creates a readme file, giving us our first file to commit to our repository. We then run 'git init' in order to create a file that tells git that the current directory is a repository. We then add the README.md file to the files we would like to track changes on using 'git add'. Finally we make our first commit, and 
+
+So far nothing has been added to the GitHub repo. All the changes still reside on your own computer. Next do the following:
+
+'
+git remote add origin https://github.com/YOURUSERNAME/exampleRepo.git
+git push -u origin master
+'
+
+This tells git that we want to refer to this repository as 'origin' when we commit additional information. You can type 'git remote -v' to see all the current remote repositories git has references to. The 'git push' command sends your data off to GitHub. You should be prompted for your username and password. The master command tells git that you are pushing the master branch, which will make more sense later.
+
+If you open the repository on 'github.com' you should now see that your README.md file has been added to the repository. 
+
+Let's see what happens when you change something in a file. Open the README.md file in a text editor and replace its text with the following.
+
+'#some new text here
+
+Spam and eggs.
+'
+
+Once we've saved that file we can perform a new commit.
+
+'git commit -m "made some changes"'
+
+The -m flag allows you to add comments that will be tracked with each new commit.
+
+Let's see what has changed.
+
+'git diff'
+
+This command will show you which files are different and how they've changed since the last time you synced your repository. We can see that the initial line of text was deleted and that the new text was added below it.
+
+'git push -u origin master'
+
+We've now pushed the new version of the file to the repository. If you navigate to your GitHub repo, you should be able to click on the individual file, then click on history. From here you can view the individual changes that were made in this commit. Deleted code shows as red, and added code shows as green.
 
 ## How do you work on someone else's repository?
 
