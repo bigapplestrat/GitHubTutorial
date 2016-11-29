@@ -58,3 +58,4 @@ Branch and commit
 - [Oh shit, git!](http://ohshitgit.com/)
 - [Atlassian git Tutorials](https://www.atlassian.com/git/tutorials/)
 - [Pro Git Book](https://git-scm.com/book/en/v2)
+- [Ten Simple Rules for Taking Advantage of Git and GitHub](http://dx.doi.org/10.1371/journal.pcbi.1004947)
