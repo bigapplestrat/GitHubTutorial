@@ -55,6 +55,6 @@ Branch and commit
 
 ## Resources
 
-- [Oh shit, git!][http://ohshitgit.com/]
-- [Atlassian git Tutorials][https://www.atlassian.com/git/tutorials/]
-- [Pro Git Book][https://git-scm.com/book/en/v2]
+- [Oh shit, git!](http://ohshitgit.com/)
+- [Atlassian git Tutorials](https://www.atlassian.com/git/tutorials/)
+- [Pro Git Book](https://git-scm.com/book/en/v2)
