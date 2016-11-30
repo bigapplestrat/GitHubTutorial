@@ -88,6 +88,30 @@ git push -u origin master
 
 We've now pushed the new version of the file to the repository. If you navigate to your GitHub repo, you should be able to click on the individual file, then click on history. From here you can view the individual changes that were made in this commit. Deleted code shows as red, and added code shows as green.
 
+But shoot. Maybe looking at this new commit you really regret your choices. "Am I really the kind of guy who makes coding-related Monty Python references?" you may say to yourself. "No. We have to forget this ever happened."
+
+To return to an earlier version of your code, we perform what's known as a `rollback`. This effectively returns the files that have been changed to their previous state. Type the following into the terminal:
+
+```sh
+git log
+```
+
+The git log lists the commits you've made to the repository in the past by id and gives you the comments you saved along with them. We want to go back to the good old days. Back when we just had a simple headline in our README file. Note the id after the most recent commit, and enter it in the following command.
+
+```sh 
+git revert COMMITIDHERE
+
+```
+
+You should be prompted to enter a commit message to explain why you have such a terrible sense of humor. Submit and continue. If all has gone according to plan, inspecting the README.md file should show that it's been returned to its original state. Enter `git log` again and notice that you did not delete the previous commit. Instead we committed a new change which undoes what was typed in the previous changes. Your love of 1970s British comedy troupes remains in the official record, though the actual code in the current version remains.
+
+It is possible to totally delete the chain of records in a repository by using the `git reset` command, but this is a kind of nuclear option, and is often heavily discouraged in group environments since it effectively destroys the commits that you are reverting past. For that reason we recommend using `git revert` whenever possible, since it maintains the overall project history and prevents loss of data. Go ahead and do the following to push your changes to GitHub.
+
+```sh
+git push -u master
+```
+
+'''
 ## How do you work on someone else's repository?
 
 Find a repository to work on, such as this one.
