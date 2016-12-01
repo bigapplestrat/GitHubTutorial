@@ -28,15 +28,15 @@ Problems of this sort only become more complex when working on teams of coders. 
 
 Version control systems allow you the ability to track and manage changes to code over time. They give a picture of how code evolves, give projects control over how to accept or reject changes, and allow the ability to undo destructive changes and start from the last time everything was working correctly.
 
-`git` is a specific variety of version control that provides a set of commands allowing versions of code to be incorporated into a history (repository) that tracks what changes have been made over time, as well as allow collaborative coding efforts. `git` shouldn't be confused with GitHub. GitHub is a repository hosting service that can store your code histories and allow you to distribute them easily, but it is not the only hosting service. `git` repositories can also be hosted by other companies like BitBucket, or stored on a local machine on your own network.
+`git` is a specific variety of version control that provides a set of commands allowing versions of code to be incorporated into a history (repository) that tracks what changes have been made over time, as well as allow collaborative coding efforts. `git` shouldn't be confused with GitHub. [GitHub](http://www.github.com/) is a repository hosting service that can store your code histories and allow you to distribute them easily, but it is not the only hosting service. `git` repositories can also be hosted by other companies like [BitBucket](https://bitbucket.org/), or stored on a local machine on your own network.
 
 ## How do you start a git repository?
 
-There are many graphical user interfaces for interacting with `git`, but intitially we are going to focus on the Unix commandline version of `git`. The command line tools are more consistent across platforms and are much more explicit about what they are doing. For our purposes today we will be using GitHub as the main repository host.
+There are many graphical user interfaces for interacting with `git`, but intitially we are going to focus on the Unix commandline version. The command line tools are more consistent across platforms and are much more explicit about what they are doing. For our purposes today we will be using GitHub as the main repository host.
 
 First you will need to set up a user account and password on GitHub. Once you have done so, click the `+` sign in the upper righthand corner of the page and choose to create a new repo. Call it `exampleRepo`.
 
-Now that we have created the repo on the server, the next step is to find a place to work on your computer. Navigate to the directory you would like to store your git repositories. The new repo will be saved as a subdirectory of that folder. Create a folder named exampleRepo and then navigate to the new directory. Type the following:
+Now that we have created the repo on the server, the next step is to find a place to work on your computer. Navigate to the directory you would like to store your git repositories. The new repo will be saved as a subdirectory of that folder. Create a folder named `exampleRepo` and then navigate to the new directory. Type the following:
 
 ```sh
 echo "# exampleRepo" >> README.md
@@ -45,9 +45,9 @@ git add README.md
 git commit -m "first commit"
 ```
 
-This block of code first creates a README file, giving us our first file to commit to our repository. We then run `git init` in order to create a file that tells git that the current directory is a repository. We then add the README.md file to the files we would like to track changes on using `git add`. Finally we make our first commit, and 
+This block of code first creates a README file, giving us our first file to commit to our repository. We then run `git init` in order to create a file that tells git that the current directory is a repository. We then add the README.md file to the files we would like to track changes on using `git add`. Finally we make our first commit, and add our changes to the repo history. 
 
-So far nothing has been added to the GitHub repo. All the changes still reside on your own computer. Next do the following:
+So far nothing has been added to the remote GitHub repo. All the changes still reside on your own computer. Next do the following:
 
 ```sh
 git remote add origin https://github.com/YOURUSERNAME/exampleRepo.git
@@ -55,6 +55,8 @@ git push -u origin master
 ```
 
 This tells git that we want to refer to this repository as 'origin' when we commit additional information. You can type `git remote -v` to see all the current remote repositories git has references to. The `git push` command sends your data off to GitHub. You should be prompted for your username and password. The master command tells git that you are pushing the master branch, which will make more sense later.
+
+If you're not using GitHub as your hosting service, you would simply give a different remote alias specific to that site. The convention of where the username and repo details go might be slightly different, but the process should be the same.
 
 If you open the repository on `github.com` you should now see that your README.md file has been added to the repository. 
 
@@ -96,22 +98,22 @@ To return to an earlier version of your code, we perform what's known as a `roll
 git log
 ```
 
-The git log lists the commits you've made to the repository in the past by id and gives you the comments you saved along with them. We want to go back to the good old days. Back when we just had a simple headline in our README file. Note the id after the most recent commit, and enter it in the following command.
+The `git log` lists the commits you've made to the repository in the past by ID and gives you the comments you saved along with them. We want to go back to the good old days. Back when we just had a simple headline in our README file. Note the ID after the most recent commit, and enter it in the following command.
 
 ```sh 
-git revert COMMITIDHERE
+git revert commitIdGoesHere
 
 ```
 
-You should be prompted to enter a commit message to explain why you have such a terrible sense of humor. Submit and continue. If all has gone according to plan, inspecting the README.md file should show that it's been returned to its original state. Enter `git log` again and notice that you did not delete the previous commit. Instead we committed a new change which undoes what was typed in the previous changes. Your love of 1970s British comedy troupes remains in the official record, though the actual code in the current version remains.
+You should be prompted to enter a commit message to explain why you have such a terrible sense of humor. Submit and continue. If all has gone according to plan, inspecting the `README.md` file should show that it's been returned to its original state. Enter `git log` again and notice that you did not delete the previous commit. Instead we committed a new change which undoes what was typed in the previous changes. Your love of 1970s British comedy troupes remains in the official record, though the actual code in the current version shows no trace.
 
-It is possible to totally delete the chain of records in a repository by using the `git reset` command, but this is a kind of nuclear option, and is often heavily discouraged in group environments since it effectively destroys the commits that you are reverting past. For that reason we recommend using `git revert` whenever possible, since it maintains the overall project history and prevents loss of data. Go ahead and do the following to push your changes to GitHub.
+It is possible to totally delete the chain of records in a repository by using the `git reset` command, but this is a kind of nuclear option and is often heavily discouraged in group environments since it effectively destroys the commits that you are reverting past. For that reason we recommend using `git revert` whenever possible, since it maintains the overall project history and prevents loss of data. Go ahead and do the following to push your changes to GitHub.
 
 ```sh
 git push -u master
 ```
 
-There are a few tricks that can help make your time with git a little less painful. Git includes a number of configuration files. The one you'll probably be the most involved with is `.gitignore`. This file lives in your project's main directory and is a list of files that you would like to prevent from being synced along with the rest of your code. For example, if you have a terabyte of high resolution Nicholas Cage headshots in your directory it's probably a good idea not to try and send those to the Github servers. Try the following...
+There are a few tricks that can help make your time with git a little less painful. Git includes a number of configuration files. The one you'll probably be the most involved with is `.gitignore`. This file lives in your project's main directory and is a list of files that you would like to prevent from being synced along with the rest of your code. For example, if you have a terabyte of high resolution Nicholas Cage headshots in your directory it's probably a good idea not to send those to the Github servers. Try the following...
 
 ```sh
 # Create a new file
@@ -136,8 +138,7 @@ You should notice that once you create the `.gitignore` file, git begins ignorin
 ```sh
 git add .gitignore
 git push -u origin master
-
-'''
+```
 
 Your git repository will now exclude these filetypes until you modify the `gitignore` file to allow them through.
 
@@ -172,6 +173,10 @@ Branch and commit
 # GitHub GUI
 
 There are a number of graphical interfaces for interacting with `git`. GitHub produces their own GUI which is available [as a download from their site.](https://desktop.github.com/) If the command line isn't for you, it offers a majority of the functionality of the command line interface and simplifies the process of commenting and tracking changes by providing a visual display.
+
+# The README.md File
+
+You may have noticed that we did a lot of playing with this file during the initial segment of the training. The `README.md` file is a markdown file that will automatically be displayed on your GitHub repository's page. You may have noticed that this very tutorial is written on a `README.md` file. Markdown is a [very flexible convention](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links) that allows you to make readable pages explaining the way that your code works in order to inform your users about how to use your programs.
 
 - `git stash`
 - Creating git version controlled RStudio project
