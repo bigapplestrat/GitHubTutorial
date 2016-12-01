@@ -21,15 +21,18 @@
 - [Change sucks. Am I doomed to forever log this in history? Revert! Abort!](#change-sucks-am-i-doomed-to-forever-log-this-in-history-revert-abort)
 - [What if I screw up real bad? Can I erase history?](#what-if-i-screw-up-real-bad-can-i-erase-history)
 - [I like some files more than others. Do all files need to be tracked?](#i-like-some-files-more-than-others-do-all-files-need-to-be-tracked)
-- [How do you work on someone else's repository?](#how-do-you-work-on-someone-elses-repository)
-- [Make changes to someone else's repository](#make-changes-to-someone-elses-repository)
-- [Submit pull request to project repository](#submit-pull-request-to-project-repository)
+- [How do you start working on someone else's repository? Fork it.](#how-do-you-start-working-on-someone-elses-repository-fork-it)
+- [You don't wanna mess up your fork right? Make a clone instead.](#you-dont-wanna-mess-up-your-fork-right-make-a-clone-instead)
+- [Branch out to make changes (in the world). Then commit!](#branch-out-to-make-changes-in-the-world-then-commit)
+- [Respectively request your changes with a little pull](#respectively-request-your-changes-with-a-little-pull)
 - [Exercises/Playground Time](#exercisesplayground-time)
 - [Git Tips and Tricks](#git-tips-and-tricks)
   - [GitHub GUI](#github-gui)
   - [The README.md File](#the-readmemd-file)
   - [Stashing away changes for just a bit](#stashing-away-changes-for-just-a-bit)
+  - [Fixing the last commit message](#fixing-the-last-commit-message)
   - [Creating git version controlled RStudio project](#creating-git-version-controlled-rstudio-project)
+  - [Create a multi-line commit message and see changes made](#create-a-multi-line-commit-message-and-see-changes-made)
   - [gitignore on specific directories](#gitignore-on-specific-directories)
 - [Resources](#resources)
 
@@ -204,34 +207,152 @@ git push -u origin master
 
 Your git repository will now exclude these filetypes until you modify the `gitignore` file to allow them through.
 
-## How do you work on someone else's repository?
+## How do you start working on someone else's repository? Fork it.
 
 You will inevitably work on a version controls project in the future. So it is
 useful to know how to work on someone else's version controlled project.
 
-First, find a repository to work on, such as this one.
+First, find a repository to work on, such as this one. Visit this tutorial if
+aren't already reading it on GitHub.
 
 ```
 https://github.com/bigapplestrat/GitHubTutorial
 ```
 
 To contribute work on this repository, you'll first have to make a copy of the
-repository by **forking** it.
+repository by **forking** it. You can find the "Fork" button near the top of
+the GitHub page, along with the "Watch" and "Star" buttons.
 
-## Make changes to someone else's repository
+![Watch, Start, and Fork buttons](./images/fork.png)
 
-Branch and commit
+## You don't wanna mess up your fork right? Make a clone instead.
 
-## Submit pull request to project repository
+Once you have a fork of this repository. You'll need make a copy of this on
+your own computer to make your changes.
+
+Find that folder where you keep your `git` repositories, or find some place you
+intend to have this project in. You'll need to then make a copy of your fork of
+the project on your computer by making a **clone** of it.
+
+Click on the "Clone or download" button to find the `git` link to clone.
+
+![Clone your fork](./images/fork.png)
+
+Copy that address and then go to your terminal and type the following.
+
+```sh
+git clone https://github.com/bigapplestrat/GitHubTutorial.git
+```
+
+This will now create a folder `GitHubTutorial/` wherever your terminal was.
+
+Cloning your fork will get all the changes recorded in this project up to the
+point where you forked the project.
+
+## Branch out to make changes (in the world). Then commit!
+
+Before you make any changes, you'll want to safely make changes without messing
+up this amazing repository, right?
+
+To safely make changes here and in the future, you'll want to create your own
+path of changes with a **branch**. This preserves the changes made so far, but
+allows you to make changes without forgetting what you started with.
+
+If you have a ton of ideas, you might want to have multiple branches, each with
+its own unique changes. You can take a look at your branches using `git
+branch`.
+
+```sh
+git branch
+```
+
+You shouldn't have any branches besides the `master` branch. The `master`
+branch is the main branch that should always work.
+
+To make new branches, you can type one of the following commands.
+
+```sh
+# branching method 1
+git checkout -B new-branch
+
+# branching method 2
+git branch new-branch
+git checkout new-branch
+```
+
+Both do the same thing, which is create a new branch and go onto that new
+branch.
+
+The `git checkout` command in general is what you will use to switch between
+branches you may have. Here is how you would switch back to the `master` branch.
+
+```sh
+git checkout master
+```
+
+But let us get back to making so cool changes.
+
+```sh
+git checkout new-branch
+```
+
+You'll now want to make some changes and commit them as usual.
+
+```sh
+echo `date` >> todaydate.txt        # make new file/changes
+git add todaydate.txt               # stage changes to be committed
+git commit -m "Add today's date"    # commit new changes
+git push origin new-branch          # push changes to your fork
+```
+
+The last command here pushed your changes up to your fork. So if you go to your
+fork of this project, you can see your changes after you switch to your
+`new-branch`. You can find how to change branches on GitHub by clicking on the
+button that says "Branch: master". It will then show you all the branches that
+you can see. Below, is how it would look if you had a `master` and
+`edit-first-part` branch.
+
+![Show different branches of the project](./images/branch.png)
+
+## Respectively request your changes with a little pull
+
+You've now many awesome changes and you now want to share those changes with a
+project. To do so, you'll need to make what is called a **pull request**, also
+known as a **PR**.
+
+GitHub makes this very easy because once you're pushed a branch from your fork,
+visiting the original project page, you can see something new.
+
+![GitHub shows you can make a pull request](./images/pr.png)
+
+Click on "Compare & pull request" to start the pull request. You should be
+greeted with a similar screen.
+
+![Pull request screen on GitHub](./images/pr-screen.gif)
+
+The top is information about your pull request with a title and message, if
+you've added one. If you scoll down, you can see the changes you've made. If
+you're satisfied with the changes, go on ahead and click on the green "Create
+pull request" button and wait for your pull request to be accepted!
 
 ## Exercises/Playground Time
 
-- How do you create a new git repository?
-- Create a file.
-- How do you check the status of your git repository?
-- What changes have been made to your repository?
-- Stage your file.
+Here's a time to reflect on what you've learned so far and play around more
+with `git` commands if you so choose.
+
+You can apply this exercise to your example project we created at the beginning
+or, if you're up for it, you can make a pull request to this repository and we
+can see the process of merging changes. There are sum spelling mistaks in
+hear :wink:
+
+- How do u create a new git repository? Remember?
+- Create a file too track or make som changes.
+- How do you check the statis of your git repository?
+- What changes have been mad to your repository?
+- Stag your file. What does staging mean?
 - Check the status of your repository.
+- Vommit your changes with a nice massage.
+- How do you check your commit history?
 
 ## Git Tips and Tricks
 
@@ -241,11 +362,60 @@ There are a number of graphical interfaces for interacting with `git`. GitHub pr
 
 ### The README.md File
 
-You may have noticed that we did a lot of playing with this file during the initial segment of the training. The `README.md` file is a markdown file that will automatically be displayed on your GitHub repository's page. You may have noticed that this very tutorial is written on a `README.md` file. Markdown is a [very flexible convention](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links) that allows you to make readable pages explaining the way that your code works in order to inform your users about how to use your programs.
+You may have noticed that we did a lot of playing with this file during the initial segment of the training. The `README.md` file is a markdown file that will automatically be displayed on your GitHub repository's page.
+
+You may have noticed that this very tutorial is written on a `README.md` file. Markdown is a [very flexible convention](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links) that allows you to make readable pages explaining the way that your code works in order to inform your users about how to use your programs.
+
+Not only that, markdown files can be converted into many, many other markup
+formats using [pandoc](http://pandoc.org/), the universal document converter.
 
 ### Stashing away changes for just a bit
 
+If you made some changes, but need to change a branch or, say, pull down
+updates from your remote, you can use `git stash` to temporarily "stash" away
+changes until later.
+
+```sh
+echo "# New file" >> newfile.md
+git stash   # stash changes under your bed or rug
+git status  # there's nothing there!
+...
+git stash apply  # find your changes and add them back
+```
+
+### Fixing the last commit message
+
+If you need to edit the last commit message, you can run the following.
+
+```sh
+git commit --amend
+```
+
+This also comes in handy if you forgot to make changes in a file and want to
+add it to your previous commit.
+
+```sh
+...  # make some changes
+git add file-you-changed.md
+git commit --amend
+```
+
 ### Creating git version controlled RStudio project
+
+RStudio has [a page][rstudio] talking about just this!
+
+[rstudio]: https://support.rstudio.com/hc/en-us/articles/200532077
+
+### Create a multi-line commit message and see changes made
+
+Sometimes when you commit a change, you might have forgotten what you even
+changed! If you use the verbose commit with a `-v` or `--verbose` flag, you can
+scroll through the changes and make a better commit message to describe all
+that happened in that change.
+
+```sh
+git commit -v
+```
 
 ### gitignore on specific directories
 
