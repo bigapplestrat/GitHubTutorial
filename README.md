@@ -236,7 +236,7 @@ the project on your computer by making a **clone** of it.
 
 Click on the "Clone or download" button to find the `git` link to clone.
 
-![Clone your fork](./images/fork.png)
+![Clone your fork](./images/clone.png)
 
 Copy that address and then go to your terminal and type the following.
 
