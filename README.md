@@ -324,7 +324,7 @@ greeted with a similar screen.
 ![Pull request screen on GitHub](./images/pr-screen.gif)
 
 The top is information about your pull request with a title and message, if
-you've added one. If you scoll down, you can see the changes you've made. If
+you've added one. If you scroll down, you can see the changes you've made. If
 you're satisfied with the changes, go on ahead and click on the green "Create
 pull request" button and wait for your pull request to be accepted!
 
@@ -422,3 +422,4 @@ You can also use `.gitignore` files if you wish to have a permanently empty dire
 - [Atlassian git Tutorials](https://www.atlassian.com/git/tutorials/)
 - [Pro Git Book](https://git-scm.com/book/en/v2)
 - [Ten Simple Rules for Taking Advantage of Git and GitHub](http://dx.doi.org/10.1371/journal.pcbi.1004947)
+- [giteveryday - A useful minimum set of commands for Everyday Git](https://www.kernel.org/pub/software/scm/git/docs/giteveryday.html)
