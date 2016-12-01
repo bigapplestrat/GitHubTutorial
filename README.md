@@ -147,7 +147,7 @@ git log  # go back in time!
 
 The `git log` lists the commits you've made to the repository in the past by ID and gives you the comments you saved along with them.
 
-We want to go back to the good ol' days. Back when we just had a simple headline in our `README.md` file. Note the ID after the most recent commit, and enter it in the following command. The ID is a long string of 40 characters unique to each commit.
+We want to go back to the good old days. Back when we just had a simple headline in our `README.md` file. Note the ID after the most recent commit, and enter it in the following command. The ID is a long string of 40 characters unique to each commit.
 
 ```sh
 git revert yourCommitIdGoesHere
