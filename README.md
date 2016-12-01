@@ -17,8 +17,8 @@
 - [What is version control and git?](#what-is-version-control-and-git)
 - [How do you start a git repository?](#how-do-you-start-a-git-repository)
 - [I've made changes, do they go to GitHub? What are remotes?](#ive-made-changes-do-they-go-to-github-what-are-remotes)
-- [I wanna make more changes. How does git know what's different?](#i-wanna-make-more-changes-how-does-git-know-whats-different)
-- [Change sucks. Am I doomed to forever log this in history? Revert! Abort!](#change-sucks-am-i-doomed-to-forever-log-this-in-history-revert-abort)
+- [I want to make more changes. How does git know what's different?](#i-want-to-make-more-changes-how-does-git-know-whats-different)
+- [I immediately regret this decision. Revert.](#i-immediately-regret-this-decision-revert)
 - [What if I screw up real bad? Can I erase history?](#what-if-i-screw-up-real-bad-can-i-erase-history)
 - [I like some files more than others. Do all files need to be tracked?](#i-like-some-files-more-than-others-do-all-files-need-to-be-tracked)
 - [How do you start working on someone else's repository? Fork it.](#how-do-you-start-working-on-someone-elses-repository-fork-it)
@@ -46,7 +46,7 @@ Problems of this sort only become more complex when working on teams of coders. 
 
 Version control systems allow you the ability to track and manage changes to code over time. They give a picture of how code evolves, give projects control over how to accept or reject changes, and allow the ability to undo destructive changes and start from the last time everything was working correctly.
 
-`git` is a specific variety of version control that provides a set of commands allowing versions of code to be incorporated into a history (repository) that tracks what changes have been made over time, as well as allow collaborative coding efforts. `git` shouldn't be confused with GitHub. [GitHub](http://www.github.com/) is a repository hosting service that can store your code histories and allow you to distribute them easily, but it is not the only hosting service. `git` repositories can also be hosted by other companies like [BitBucket](https://bitbucket.org/), or stored on a local machine on your own network.
+`git` is a specific variety of version control that provides a set of commands allowing versions of code to be incorporated into a history (repository) that tracks what changes have been made over time, and also allows collaborative coding efforts. `git` shouldn't be confused with GitHub. [GitHub](http://www.github.com/) is a repository hosting service that can store your code histories and allow you to distribute them easily, but it is not the only hosting service. `git` repositories can also be hosted by other companies like [BitBucket](https://bitbucket.org/), or stored on a local machine on your own network.
 
 ## How do you start a git repository?
 
@@ -69,7 +69,7 @@ git add README.md                   # stage file to be committed
 git commit -m "first commit"        # actually commit file to version history
 ```
 
-This block of code first creates a README file, giving us our first file to commit to our repository. We then run `git init` in order to create a file that tells git that the current directory is a repository. We then add the README.md file to the files we would like to track changes on using `git add`. Finally we make our first commit, and add our changes to the repo history.
+This block of code first creates the `README.md` file, giving us our first file to commit to our repository. We then run `git init` in order to create a file that tells git that the current directory is a repository. We then add the `README.md` file to the files we would like to track changes on using `git add`. Finally we make our first commit, and add our changes to the repo history.
 
 ## I've made changes, do they go to GitHub? What are remotes?
 
@@ -80,7 +80,7 @@ git remote add origin https://github.com/YOURUSERNAME/exampleRepo.git
 git push -u origin master
 ```
 
-This tells git that we want to refer to this repository as `origin` when we commit additional information. The `git push` command sends your data off to GitHub. You should be prompted for your username and password. The master command tells git that you are pushing the master branch, which will make more sense later.
+This tells `git` that we want to refer to this repository as `origin` when we commit additional information. The `git push` command sends your data off to GitHub. You should be prompted for your username and password. The master command tells git that you are pushing the master branch, which will make more sense later.
 
 **Note**: You can type `git remote -v` to see all the current remote repositories git has references to.
 
@@ -88,7 +88,7 @@ If you're not using GitHub as your hosting service, you would simply give a diff
 
 If you open the repository on `github.com` you should now see that your `README.md` file has been added to the repository.
 
-## I wanna make more changes. How does git know what's different?
+## I want to make more changes. How does git know what's different?
 
 Let's see what happens when you change something in the file. Open the `README.md` file in a text editor and replace its text with the following.
 
@@ -133,17 +133,11 @@ The `-m` flag allows you to add comments that will be tracked with each new comm
 git push -u origin master
 ```
 
-## Change sucks. Am I doomed to forever log this in history? Revert! Abort!
+## I immediately regret this decision. Revert.
 
 We've now pushed the new version of the file to the repository. If you navigate to your GitHub repo, you should be able to click on the individual file, then click on history. From here you can view the individual changes that were made in this commit. Deleted code shows as red, and added code shows as green.
 
-But shoot. Maybe looking at this new commit you really regret your choices.
-
-> "Am I really the kind of guy who makes coding-related Monty Python references?"
-
-You may say to yourself. Then go onto say
-
-> "No. We have to forget this ever happened."
+But shoot. Maybe looking at this new commit you really regret your choices. "Am I really the kind of guy who makes coding-related Monty Python references?" you may say to yourself. "No. We have to forget this ever happened."
 
 To return to an earlier version of your code, we perform what's known as a `rollback`. This effectively returns the files that have been changed to their previous state. Type the following into the terminal:
 
@@ -156,8 +150,7 @@ The `git log` lists the commits you've made to the repository in the past by ID 
 We want to go back to the good ol' days. Back when we just had a simple headline in our `README.md` file. Note the ID after the most recent commit, and enter it in the following command. The ID is a long string of 40 characters unique to each commit.
 
 ```sh
-git revert commitIdGoesHere
-git revert 24ef05635ff4a6ea3584c6da70af726c7633b8de  # for example
+git revert yourCommitIdGoesHere
 ```
 
 You should be prompted to enter a commit message to explain why you have such a terrible sense of humor. Submit and continue.
@@ -176,7 +169,7 @@ git push -u master
 
 ## I like some files more than others. Do all files need to be tracked?
 
-There are a few tricks that can help make your time with `git` a little less painful. Git includes a number of configuration files. The one you'll probably be the most involved with is `.gitignore`. This file lives in your project's main directory and is a list of files that you would like to prevent from being synced along with the rest of your code. For example, if you have a terabyte of high resolution Nicolas Cage headshots in your directory it's probably a good idea not to send those to the GitHub servers. Try the following...
+There are a few tricks that can help make your time with `git` a little less painful. Git includes a number of configuration files. The one you'll probably be the most involved with is `.gitignore`. This file lives in your project's main directory and is a list of files that you would like to prevent from being synced along with the rest of your code. For example, if you have a terabyte of high resolution Nicolas Cage headshots in your directory it's probably a good idea not to send those to the GitHub servers. You monster. Try the following...
 
 ```sh
 # Create a new file
