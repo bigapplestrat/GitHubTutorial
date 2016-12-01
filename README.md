@@ -111,7 +111,36 @@ It is possible to totally delete the chain of records in a repository by using t
 git push -u master
 ```
 
+There are a few tricks that can help make your time with git a little less painful. Git includes a number of configuration files. The one you'll probably be the most involved with is `.gitignore`. This file lives in your project's main directory and is a list of files that you would like to prevent from being synced along with the rest of your code. For example, if you have a terabyte of high resolution Nicholas Cage headshots in your directory it's probably a good idea not to try and send those to the Github servers. Try the following...
+
+```sh
+# Create a new file
+ls > exampleFile.example
+
+# Note the output here
+git status
+
+# Create your .gitignore file
+touch .gitignore
+
+# Add a new exclusion criteria to your .gitignore file
+echo "*.example" >> .gitignore
+
+# Ping git status again
+git status
+
+```
+
+You should notice that once you create the `.gitignore` file, git begins ignoring any file ending with the .example file extension. This process works for any file type. The `.gitignore` file is like any other file, so we need to add it to our commit path and push it to the remote server in order to check it into the repository.
+
+```sh
+git add .gitignore
+git push -u origin master
+
 '''
+
+Your git repository will now exclude these filetypes until you modify the `gitignore` file to allow them through.
+
 ## How do you work on someone else's repository?
 
 Find a repository to work on, such as this one.
@@ -140,8 +169,16 @@ Branch and commit
 
 ## Git Tips and Tricks
 
+# GitHub GUI
+
+There are a number of graphical interfaces for interacting with `git`. GitHub produces their own GUI which is available [as a download from their site.](https://desktop.github.com/) If the command line isn't for you, it offers a majority of the functionality of the command line interface and simplifies the process of commenting and tracking changes by providing a visual display.
+
 - `git stash`
 - Creating git version controlled RStudio project
+
+# gitignore on specific directories
+
+The `.gitignore` file works by affecting the directory it lives in and any subdirectories nested inside that directory. For this reason, your main `.gitignore` file should live in your root directory. However there might be cases where you wish to exclude a certain kind of files in one subdirectory or another. You can achieve this by creating a new `.gitignore` file in the subdirectory of interest. For example, if you have a `credentials` subdirectory with passwords and other credentials saved in plaintext form, but you wish to sync text files in other directories, you can create a new `.gitignore` in the `credentials` directory with the line `*.txt` inside of it. From this point on, `git` will sync text files from all other directories, but leave your dirty secrets alone as long as they're in the `credentials` directory.
 
 ## Resources
 
