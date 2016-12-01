@@ -113,7 +113,7 @@ It is possible to totally delete the chain of records in a repository by using t
 git push -u master
 ```
 
-There are a few tricks that can help make your time with git a little less painful. Git includes a number of configuration files. The one you'll probably be the most involved with is `.gitignore`. This file lives in your project's main directory and is a list of files that you would like to prevent from being synced along with the rest of your code. For example, if you have a terabyte of high resolution Nicholas Cage headshots in your directory it's probably a good idea not to send those to the Github servers. Try the following...
+There are a few tricks that can help make your time with git a little less painful. Git includes a number of configuration files. The one you'll probably be the most involved with is `.gitignore`. This file lives in your project's main directory and is a list of files that you would like to prevent from being synced along with the rest of your code. For example, if you have a terabyte of high resolution Nicolas Cage headshots in your directory it's probably a good idea not to send those to the Github servers. Try the following...
 
 ```sh
 # Create a new file
@@ -170,20 +170,22 @@ Branch and commit
 
 ## Git Tips and Tricks
 
-# GitHub GUI
+### GitHub GUI
 
 There are a number of graphical interfaces for interacting with `git`. GitHub produces their own GUI which is available [as a download from their site.](https://desktop.github.com/) If the command line isn't for you, it offers a majority of the functionality of the command line interface and simplifies the process of commenting and tracking changes by providing a visual display.
 
-# The README.md File
+### The README.md File
 
 You may have noticed that we did a lot of playing with this file during the initial segment of the training. The `README.md` file is a markdown file that will automatically be displayed on your GitHub repository's page. You may have noticed that this very tutorial is written on a `README.md` file. Markdown is a [very flexible convention](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links) that allows you to make readable pages explaining the way that your code works in order to inform your users about how to use your programs.
 
 - `git stash`
 - Creating git version controlled RStudio project
 
-# gitignore on specific directories
+### gitignore on specific directories
 
 The `.gitignore` file works by affecting the directory it lives in and any subdirectories nested inside that directory. For this reason, your main `.gitignore` file should live in your root directory. However there might be cases where you wish to exclude a certain kind of files in one subdirectory or another. You can achieve this by creating a new `.gitignore` file in the subdirectory of interest. For example, if you have a `credentials` subdirectory with passwords and other credentials saved in plaintext form, but you wish to sync text files in other directories, you can create a new `.gitignore` in the `credentials` directory with the line `*.txt` inside of it. From this point on, `git` will sync text files from all other directories, but leave your dirty secrets alone as long as they're in the `credentials` directory.
+
+You can also use `.gitignore` files if you wish to have a permanently empty directory - for example, if it's a place that users will be putting their own data. Simply initialize the `.gitignore` file in the directory you wish to remain empty and push the change. The directory should now be added like any other file despite being empty.
 
 ## Resources
 
