@@ -211,7 +211,7 @@ First, find a repository to work on, such as this one. Visit this tutorial if
 aren't already reading it on GitHub.
 
 ```
-https://github.com/bigapplestrat/GitHubTutorial
+https://github.com/ryanmswan/GitHubTutorial
 ```
 
 To contribute work on this repository, you'll first have to make a copy of the
@@ -236,7 +236,7 @@ Click on the "Clone or download" button to find the `git` link to clone.
 Copy that address and then go to your terminal and type the following.
 
 ```sh
-git clone https://github.com/bigapplestrat/GitHubTutorial.git
+git clone https://github.com/ryanmswan/GitHubTutorial.git
 ```
 
 This will now create a folder `GitHubTutorial/` wherever your terminal was.
